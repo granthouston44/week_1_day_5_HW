@@ -37,7 +37,8 @@ def find_pet_by_name(pet_shop, name)
     for each_name in pet_shop[:pets]
       if each_name[:name] == name
         pet[:name] = name
+        return pet
       end
     end
-    pet
+    return nil
 end
