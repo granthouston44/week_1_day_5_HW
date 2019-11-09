@@ -56,18 +56,26 @@ def add_pet_to_stock(pet_shop, new_pet)
 end
 
 def customer_cash(customer)
-  @customers[0][:cash]
+  customer[:cash]
 end
 
 def remove_customer_cash(customer, amount)
   updated_cash = customer_cash(customer) - amount
-  @customers[0][:cash] = updated_cash
+  customer[:cash] = updated_cash
 end
 
 def customer_pet_count(customer)
-  @customers[0][:pets].count
+  customer[:pets].count
 end
 
 def add_pet_to_customer(customer, new_pet)
   customer[:pets] = [new_pet]
+end
+
+def customer_can_afford_pet(customer, new_pet)
+
+  if new_pet[:price] <= customer_cash(customer)
+    return  true
+  else false
+  end
 end
