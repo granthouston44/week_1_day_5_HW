@@ -33,14 +33,14 @@ def pets_by_breed(pet_shop, searched_breed)
 end
 
 def find_pet_by_name(pet_shop, name)
-    pet = {}
-    for each_name in pet_shop[:pets]
-      if each_name[:name] == name
-        pet[:name] = name
-        return pet
-      end
+  pet = {}
+  for each_name in pet_shop[:pets]
+    if each_name[:name] == name
+      pet[:name] = name
+      return pet
     end
-    return nil
+  end
+  return nil
 end
 
 def remove_pet_by_name(shop, name)
@@ -62,4 +62,12 @@ end
 def remove_customer_cash(customer, amount)
   updated_cash = customer_cash(customer) - amount
   @customers[0][:cash] = updated_cash
+end
+
+def customer_pet_count(customer)
+  @customers[0][:pets].count
+end
+
+def add_pet_to_customer(customer, new_pet)
+  customer[:pets] = [new_pet]
 end
