@@ -33,11 +33,11 @@ def pets_by_breed(pet_shop, searched_breed)
 end
 
 def find_pet_by_name(pet_shop, name)
-  pet = {}
-  for each_name in pet_shop[:pets]
-    if each_name[:name] == name
-      pet[:name] = name
-      return pet
+  found_pet = nil
+  for pet in pet_shop[:pets]
+    if pet[:name] == name
+      found_pet = pet
+      return found_pet
     end
   end
   return nil
@@ -73,9 +73,18 @@ def add_pet_to_customer(customer, new_pet)
 end
 
 def customer_can_afford_pet(customer, new_pet)
-
   if new_pet[:price] <= customer_cash(customer)
     return  true
   else false
+  end
+end
+
+def sell_pet_to_customer(pet_shop, pet, customer)
+  if pet != nil
+    add_pet_to_customer(customer, pet)
+    increase_pets_sold(pet_shop, customer_pet_count(customer))
+    remove_customer_cash(customer, pet[:price])
+    add_or_remove_cash(pet_shop, pet[:price])
+  else pet = nil
   end
 end
